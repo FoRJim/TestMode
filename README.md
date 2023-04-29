@@ -1,0 +1,1 @@
+# Project status [![Build status](https://ci.appveyor.com/api/projects/status/t45etqyodyeevmlk/branch/main?svg=true)](https://ci.appveyor.com/project/FoRJim/testmode/branch/main)
