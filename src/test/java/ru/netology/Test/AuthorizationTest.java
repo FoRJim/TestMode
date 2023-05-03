@@ -3,6 +3,7 @@ package ru.netology.test;
 import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -52,5 +53,24 @@ public class AuthorizationTest {
         $("[data-test-id=password] input").setValue(blockedUser.getPassword());
         $("[data-test-id=action-login]").click();
         $("[data-test-id=error-notification] .notification__content").shouldHave(Condition.text("Ошибка! Пользователь заблокирован")).shouldBe(Condition.visible);
+    }
+
+    @Test
+    void loginWithWrongUsername() {
+        var invalidLogin = generateUser("active");
+        var registeredPassword = generateRegisteredUser ("active");
+        $("[data-test-id=login] input").setValue(invalidLogin.getLogin());
+        $("[data-test-id=password] input").setValue(registeredPassword.getPassword());
+        $("[data-test-id=action-login]").click();
+        $("[data-test-id=error-notification] .notification__content").shouldHave(Condition.text("Ошибка! Неверно указан логин или пароль")).shouldBe(Condition.visible);
+    }
+
+    @Test
+    void removedExtraCharactersInTheLogin() {
+        var invalidLogin = generateRegisteredUser("active");
+        $("[data-test-id=login] input").setValue(invalidLogin.getLogin()).sendKeys( Keys.INSERT + "4");
+        $("[data-test-id=password] input").setValue(invalidLogin.getPassword());
+        $("[data-test-id=action-login]").click();
+        $("[data-test-id=error-notification] .notification__content").shouldHave(Condition.text("Ошибка! Неверно указан логин или пароль")).shouldBe(Condition.visible);
     }
 }
