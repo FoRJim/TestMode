@@ -28,9 +28,9 @@ public class AuthorizationTest {
 
     @Test
     void getErrorIfNotRegisteredUser() {
-        var NotRegisteredUser = generateUser("active");
-        $("[data-test-id=login] input").setValue(NotRegisteredUser.getLogin());
-        $("[data-test-id=password] input").setValue(NotRegisteredUser.getPassword());
+        var notRegisteredUser = generateUser("active");
+        $("[data-test-id=login] input").setValue(notRegisteredUser.getLogin());
+        $("[data-test-id=password] input").setValue(notRegisteredUser.getPassword());
         $("[data-test-id=action-login]").click();
         $("[data-test-id=error-notification] .notification__title").shouldHave(Condition.text("Ошибка")).shouldBe(Condition.visible);
     }
@@ -38,9 +38,9 @@ public class AuthorizationTest {
     @Test
     void showLoggedInUserWithWrongPassword() {
         var registeredUser = generateRegisteredUser("active");
-        var NotRegisteredPassword = generateUser("active");
+        var notRegisteredPassword = generateUser("active");
         $("[data-test-id=login] input").setValue(registeredUser.getLogin());
-        $("[data-test-id=password] input").setValue(NotRegisteredPassword.getPassword());
+        $("[data-test-id=password] input").setValue(notRegisteredPassword.getPassword());
         $("[data-test-id=action-login]").click();
         $("[data-test-id=error-notification] .notification__title").shouldHave(Condition.text("Ошибка")).shouldBe(Condition.visible);
     }
