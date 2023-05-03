@@ -32,7 +32,7 @@ public class AuthorizationTest {
         $("[data-test-id=login] input").setValue(notRegisteredUser.getLogin());
         $("[data-test-id=password] input").setValue(notRegisteredUser.getPassword());
         $("[data-test-id=action-login]").click();
-        $("[data-test-id=error-notification] .notification__title").shouldHave(Condition.text("Ошибка")).shouldBe(Condition.visible);
+        $("[data-test-id=error-notification] .notification__content").shouldHave(Condition.text("Ошибка! Неверно указан логин или пароль")).shouldBe(Condition.visible);
     }
 
     @Test
@@ -42,7 +42,7 @@ public class AuthorizationTest {
         $("[data-test-id=login] input").setValue(registeredUser.getLogin());
         $("[data-test-id=password] input").setValue(notRegisteredPassword.getPassword());
         $("[data-test-id=action-login]").click();
-        $("[data-test-id=error-notification] .notification__title").shouldHave(Condition.text("Ошибка")).shouldBe(Condition.visible);
+        $("[data-test-id=error-notification] .notification__content").shouldHave(Condition.text("Ошибка! Неверно указан логин или пароль")).shouldBe(Condition.visible);
     }
 
     @Test
