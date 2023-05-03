@@ -1,4 +1,4 @@
-package ru.netology.Test;
+package ru.netology.test;
 
 import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.BeforeEach;
@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static ru.netology.Data.DataGenerator.Registration.generateRegisteredUser;
-import static ru.netology.Data.DataGenerator.Registration.generateUser;
+import static ru.netology.data.DataGenerator.Registration.generateRegisteredUser;
+import static ru.netology.data.DataGenerator.Registration.generateUser;
 
 
 public class AuthorizationTest {
